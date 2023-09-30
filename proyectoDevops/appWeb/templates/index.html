@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App de Notas</title>
+</head>
+<body>
+    <h1>App de Notas</h1>
+    
+    <!-- Formulario para agregar notas -->
+    <form action="/notas" method="POST">
+        <label for="nota">Nueva Nota:</label>
+        <input type="text" id="nota" name="nota" required>
+        <button type="submit">Agregar Nota</button>
+    </form>
+
+    <!-- Lista de notas existentes -->
+    <h2>Notas:</h2>
+    <ul>
+        {% for nota in notas %}
+        <li>{{ nota[1] }}: {{ nota[2] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

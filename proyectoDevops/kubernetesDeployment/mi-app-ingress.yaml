@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mi-app-ingress
+spec:
+  rules:
+    - host: myapp-mariano-andrigo.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mi-app-service
+                port:
+                  number: 80
