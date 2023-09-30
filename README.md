@@ -6,6 +6,30 @@
 
 ---
 
+# Descripción del Proyecto 📝
+
+Este proyecto se centra en el despliegue de una aplicación web de creación de notas, diseñada para gestionar y almacenar notas de manera eficiente. La aplicación se encuentra conectada a una base de datos donde se almacenan todas las notas creadas.
+
+## Pasos Clave del Proyecto 🔑
+
+1. **Creación de la Infraestructura con Terraform**: Para garantizar la disponibilidad y escalabilidad de nuestra aplicación, comenzamos creando la infraestructura necesaria utilizando Terraform. Esto incluye la configuración de redes virtuales (VPC), subredes, grupos de seguridad y otros recursos esenciales en la nube de AWS.
+
+2. **Desarrollo de la Aplicación Web**: La aplicación web de creación de notas se desarrolló y empaquetó en una imagen Docker. Esta imagen se utiliza posteriormente para implementar la aplicación en un clúster de Kubernetes.
+
+3. **Almacenamiento de Datos en una Base de Datos**: Las notas creadas por los usuarios se almacenan de manera segura en una base de datos PostgreSQL. Se configura la base de datos para que sea escalable y capaz de manejar una carga significativa de usuarios concurrentes.
+
+4. **Subida de la Imagen de la Aplicación a Amazon ECR**: La imagen Docker de la aplicación se almacena en Amazon Elastic Container Registry (ECR), lo que nos permite gestionar y desplegar la aplicación de manera eficiente en el clúster de Kubernetes.
+
+5. **Despliegue de la Aplicación en Kubernetes**: Utilizando Kubernetes, desplegamos la aplicación web y garantizamos que se ejecute de manera confiable y escalable en un clúster administrado.
+
+6. **Acceso Público a la Aplicación**: Para que la aplicación sea accesible públicamente, configuramos un Ingress en Kubernetes. Esto permite que la aplicación sea accesible a través de una dirección IP pública de nuestro clúster de Kubernetes.
+
+7. **Pruebas y Verificación**: Realizamos pruebas exhaustivas para asegurarnos de que la aplicación funcione correctamente y sea accesible desde la dirección IP pública proporcionada.
+
+En conjunto, este proyecto demuestra cómo crear y gestionar una infraestructura en la nube, desarrollar una aplicación web, conectarla a una base de datos, y luego desplegarla en un clúster de Kubernetes, asegurando su accesibilidad pública.
+
+
+
 ## 🌍 Selección de Región de AWS
 
 Se eligió la región **us-east-1** de AWS para este proyecto debido a su disponibilidad y capacidad de escalabilidad. Esta región es una de las más utilizadas y confiables en AWS, lo que garantiza una buena disponibilidad de servicios y recursos.
