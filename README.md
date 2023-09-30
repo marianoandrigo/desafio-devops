@@ -24,7 +24,6 @@ Este proyecto se centra en el despliegue de una aplicación web de creación de 
 
 6. **Acceso Público a la Aplicación**: Para que la aplicación sea accesible públicamente, configuramos un Ingress en Kubernetes. Esto permite que la aplicación sea accesible a través de una dirección IP pública de nuestro clúster de Kubernetes.
 
-7. **Pruebas y Verificación**: Realizamos pruebas exhaustivas para asegurarnos de que la aplicación funcione correctamente y sea accesible desde la dirección IP pública proporcionada.
 
 En conjunto, este proyecto demuestra cómo crear y gestionar una infraestructura en la nube, desarrollar una aplicación web, conectarla a una base de datos, y luego desplegarla en un clúster de Kubernetes, asegurando su accesibilidad pública.
 
