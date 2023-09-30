@@ -68,6 +68,9 @@ Se configuraron grupos de nodos administrados para permitir la escalabilidad aut
 
 
 
+## Ejecucion y pasos para la Implementacion
+
+
 ## 🛠️ Requisitos Previos
 
 Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas:
@@ -106,4 +109,73 @@ docker tag mi-app:v1 tu-id-de-cuenta.dkr.ecr.tu-region.amazonaws.com/mi-app:v1
 Con la imagen correctamente etiquetada, ya puedes subirla a tu repositorio de ECR:
 
 docker push tu-id-de-cuenta.dkr.ecr.tu-region.amazonaws.com/mi-app:v1
+
+
+## Pasos para el Despliegue 🚀
+
+1. Abre una terminal y navega hasta el directorio donde se encuentran los archivos de Terraform (main.tf, db.tf, securitygroups.tf, eks.tf,secrets.tf)
+
+2. Inicializa Terraform y descarga los módulos necesarios con el comando:
+   
+    terraform init
+
+3. Obtén un resumen de los cambios que Terraform aplicará a tu infraestructura:
+
+    terraform plan
+   
+    Revisa cuidadosamente la salida para asegurarte de que se crearán los recursos deseados y de que no haya errores.
+
+4. Si todo se ve bien en el plan, aplica los cambios para crear la infraestructura:
+   
+    terraform apply
+
+    Terraform te pedirá confirmación antes de aplicar los cambios. Ingresa "yes" para continuar.
+
+5. Una vez completado el despliegue, Terraform mostrará información sobre los recursos creados.
+
+
+## Despliegue en Kubernetes 🌐
+
+Después de haber creado la infraestructura en AWS y subido la imagen de Docker a Amazon ECR, puedes proceder con el despliegue de la aplicación en Kubernetes.
+
+### Requisitos Previos
+
+Antes de comenzar, asegúrate de tener instalado `kubectl` y de haber configurado tu archivo `kubeconfig` para que apunte al clúster de Kubernetes donde deseas desplegar la aplicación.
+
+1. Abre una terminal y navega hasta el directorio donde se encuentran los archivos YAML para Kubernetes (`deployment.yaml`, `service.yaml`, `ingress.yaml`) y tu archivo `kubeconfig`.
+   
+2. Configura el archivo `kubeconfig` para acceder al clúster de Kubernetes utilizando el siguiente comando (reemplaza `<TU-REGION>` y `<NOMBRE-DE-TU-CLUSTER>`):
+
+    aws eks --region <TU-REGION> update-kubeconfig --name <NOMBRE-DE-TU-CLUSTER>
+
+### Pasos para el Despliegue
+
+1. Abre una terminal y navega hasta el directorio donde se encuentran los archivos YAML para Kubernetes (`deployment.yaml`, `service.yaml`, `ingress.yaml`) y tu archivo `kubeconfig`.
+   
+2. Ejecuta el siguiente comando para aplicar el despliegue del servicio y del despliegue de la aplicación:
+
+    kubectl apply -f deployment.yaml
+
+   Esto creará los pods de la aplicación y los servicios necesarios.
+
+3. A continuación, ejecuta el siguiente comando para aplicar la configuración del servicio de Ingress:
+
+    kubectl apply -f ingress.yaml
+
+   Esto configurará las reglas de Ingress para dirigir el tráfico a los pods de la aplicación.
+
+4. Puedes verificar que los pods de la aplicación se estén ejecutando correctamente mediante el siguiente comando:
+
+    kubectl get pods
+
+   Deberías ver una lista de pods con el nombre de la aplicación y el estado "Running".
+
+5. Ahora, para acceder a tu aplicación, visita la dirección con el dominio que agregaste en tu `ingress.yaml` en tu navegador web:
+
+    En mi caso creé un dominio gratuito de ejemplo para poder probarlo:
+    [http://myapp-mariano-andrigo.freeddns.org/](http://myapp-mariano-andrigo.freeddns.org/)
+
+Tu aplicación web debería estar funcionando en Kubernetes y accesible a través de la dirección proporcionada.
+
+
 
