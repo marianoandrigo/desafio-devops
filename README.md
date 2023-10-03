@@ -69,13 +69,11 @@ CREATE DATABASE base_mariano_desafio;
 📜 Script de Creación de la Tabla "notas"
 sql
 
-CREATE TABLE IF NOT EXISTS public.notas
-(
-    id integer NOT NULL DEFAULT nextval('notas_id_seq'::regclass),
-    titulo character varying(255) COLLATE pg_catalog."default",
-    contenido text COLLATE pg_catalog."default",
-    fecha_creacion timestamp without time zone DEFAULT now(),
-    CONSTRAINT notas_pkey PRIMARY KEY (id)
+CREATE TABLE notas (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(255),
+    contenido TEXT,
+    fecha_creacion TIMESTAMP DEFAULT NOW()
 );
 ```
 
